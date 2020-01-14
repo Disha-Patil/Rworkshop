@@ -1,0 +1,143 @@
+---
+title: "Working with R console through terminal"
+output: html_notebook
+---
+
+#### R as a Calculator
+
+At the prompt in console type any arithmatic equation and you will get the expected answer. 
+
+1. Addition
+```{r}
+2+2
+```
+
+2. Subtraction
+```{r}
+5-2
+```
+
+3. Multiplication
+```{r}
+2*2
+```
+
+4. Division
+```{r}
+6/2
+```
+
+5. Exponent
+```{r}
+2^2
+```
+
+6. Combinations follow operator precedence rules
+```{r}
+2+8/2 
+```
+
+```{r}
+4 + 3 / 10 ^ 2
+```
+
+```{r}
+(4 + 3) / 10 ^ 2
+```
+
+```{r}
+4 + (3 / 10) ^ 2
+```
+
+7. Same level of precedence then follows left to right rule
+```{r}
+4*5/2
+```
+
+```{r}
+15/5*2
+```
+
+8. Scientific calculations
+```{r}
+log(10)
+```
+
+```{r}
+log10(10)
+```
+
+```{r}
+exp(10)
+```
+
+
+```{r}
+pi
+```
+
+
+```{r}
+exp(1)
+```
+
+
+9. Logical operator
+```{r}
+2<4
+```
+
+
+```{r}
+4>6
+```
+
+```{r}
+5==6
+```
+
+```{r}
+5!=6
+```
+
+```{r}
+TRUE
+```
+
+```{r}
+!TRUE
+```
+
+```{r}
+T
+```
+
+
+```{r}
+F
+```
+
+```{r}
+T
+```
+
+###perform the following calculations and note your observations
+```{r}
+2+2
+2*3
+2/5
+8/2-2*(2-3)
+3*5  * 4   /2
+```
+
+###A note about computers and computing precision in R 
+While R is developed as a portable computing environment, you may discover that different computers will compute slightly different results for the same computational steps. In most instances, these differences are small and are artifacts of the processor in your computer. This behavior is different than differences caused by errors in your computations. When this occurs, ensure that all of your computational steps are correct before proceeding on. Normally, these types of differences will be small and should not impact your work.
+
+Another different type of error involves the representational precision in a computer. In this case, the physical way computers store numbers is the culprit. Integers [whole numbers] are stored exactly as they are in computer memory. The various operators manipulate integers precisely. Decimal [float point] numbers are stored differently. Your computer stores an approximation of a decimal number rather than the exact value. For small decimal values, this approximation is very accurate. For non-finite decimals, like 1/3, the approximation is not exact. While the error in the approximation is very small, it can, in the right circumstance, cause computational issues. Here is a simple example that will demonstrate this behavior.
+
+```{r}
+2^(1/2) * 2^(1/2) - 2
+```
+
+
+

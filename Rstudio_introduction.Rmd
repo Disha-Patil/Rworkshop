@@ -1,0 +1,52 @@
+---
+title: "Rstudio introduction"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Console
+
+type commands see outputs
+
+## Environment
+create an object (iris) open the object from environment. 
+
+## History
+shows list of commands used
+can be saved to a .R file
+
+## Files
+files in current folder. (set working directory trick to be shown later)
+
+## Plots
+plots made can be seen here
+
+## Packages
+packages installed 
+
+##Help
+help documentation searchable
+
+##Viewer
+viewer for pdf html document viewing
+
+##New file
+cltr shift N
+or drop down
+
+type some command you tested in console and execute it by pressing the run button
+
+
+##explore R studio
+1. create a new file. 
+2. write some basic calculations in it. 
+3. try these calculations in console first.
+4. save the file.
+5. create objects
+6. search for help from the help tab and from the console. 
+7. rename files from the files tab
+8. make new folder, copy/move files around
+

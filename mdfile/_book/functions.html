@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 functions | R workshop</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 functions | R workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 functions | R workshop" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Flame university" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression.html"/>
+<link rel="next" href="scripts.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R workshop</a></li>
+<li class="chapter" data-level="2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>2</b> R as a Calculator</a></li>
+<li class="chapter" data-level="3" data-path="r-objects.html"><a href="r-objects.html"><i class="fa fa-check"></i><b>3</b> r objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-objects.html"><a href="r-objects.html#creating-objects-in-r"><i class="fa fa-check"></i><b>3.1</b> Creating objects in R</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-objects.html"><a href="r-objects.html#comments"><i class="fa fa-check"></i><b>3.1.1</b> Comments</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-objects.html"><a href="r-objects.html#functions-and-their-arguments"><i class="fa fa-check"></i><b>3.1.2</b> Functions and their arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-objects.html"><a href="r-objects.html#vectors-and-data-types"><i class="fa fa-check"></i><b>3.2</b> Vectors and data types</a></li>
+<li class="chapter" data-level="3.3" data-path="r-objects.html"><a href="r-objects.html#subsetting-vectors"><i class="fa fa-check"></i><b>3.3</b> Subsetting vectors</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-objects.html"><a href="r-objects.html#conditional-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Conditional subsetting</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-objects.html"><a href="r-objects.html#creating-sequences"><i class="fa fa-check"></i><b>3.3.2</b> Creating sequences</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-objects.html"><a href="r-objects.html#vector-arithmatic"><i class="fa fa-check"></i><b>3.3.3</b> Vector arithmatic</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-objects.html"><a href="r-objects.html#plot-simple-vector"><i class="fa fa-check"></i><b>3.3.4</b> plot simple vector</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>4</b> list</a><ul>
+<li class="chapter" data-level="4.1" data-path="list.html"><a href="list.html#what-would-happen-if-you-combine-vectors-of-different-class"><i class="fa fa-check"></i><b>4.1</b> what would happen if you combine vectors of different class</a></li>
+<li class="chapter" data-level="4.2" data-path="list.html"><a href="list.html#try-it-in-list"><i class="fa fa-check"></i><b>4.2</b> Try it in list</a></li>
+<li class="chapter" data-level="4.3" data-path="list.html"><a href="list.html#access-elements"><i class="fa fa-check"></i><b>4.3</b> access elements</a></li>
+<li class="chapter" data-level="4.4" data-path="list.html"><a href="list.html#check-class"><i class="fa fa-check"></i><b>4.4</b> check class</a></li>
+<li class="chapter" data-level="4.5" data-path="list.html"><a href="list.html#give-names"><i class="fa fa-check"></i><b>4.5</b> give names</a></li>
+<li class="chapter" data-level="4.6" data-path="list.html"><a href="list.html#access-elements-by-names"><i class="fa fa-check"></i><b>4.6</b> access elements by names</a></li>
+<li class="chapter" data-level="4.7" data-path="list.html"><a href="list.html#add-element-to-end-of-list"><i class="fa fa-check"></i><b>4.7</b> add element to end of list</a></li>
+<li class="chapter" data-level="4.8" data-path="list.html"><a href="list.html#remove-the-last-element"><i class="fa fa-check"></i><b>4.8</b> remove the last element</a></li>
+<li class="chapter" data-level="4.9" data-path="list.html"><a href="list.html#merge-two-lists"><i class="fa fa-check"></i><b>4.9</b> merge two lists</a></li>
+<li class="chapter" data-level="4.10" data-path="list.html"><a href="list.html#convert-list-to-vector"><i class="fa fa-check"></i><b>4.10</b> convert list to vector</a></li>
+<li class="chapter" data-level="4.11" data-path="list.html"><a href="list.html#matrix-example-with-list"><i class="fa fa-check"></i><b>4.11</b> matrix example with list</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5</b> matrices</a><ul>
+<li class="chapter" data-level="5.1" data-path="matrices.html"><a href="matrices.html#whats-a-matrix"><i class="fa fa-check"></i><b>5.1</b> What’s a matrix?</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html#some-matrix-fun"><i class="fa fa-check"></i><b>5.2</b> Some matrix fun</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="matrices.html"><a href="matrices.html#popularity-of-tv-series"><i class="fa fa-check"></i><b>5.2.1</b> Popularity of TV series</a></li>
+<li class="chapter" data-level="5.2.2" data-path="matrices.html"><a href="matrices.html#create-popularity-vector"><i class="fa fa-check"></i><b>5.2.2</b> Create popularity vector</a></li>
+<li class="chapter" data-level="5.2.3" data-path="matrices.html"><a href="matrices.html#construct-the-tv-matrix"><i class="fa fa-check"></i><b>5.2.3</b> construct the TV matrix</a></li>
+<li class="chapter" data-level="5.2.4" data-path="matrices.html"><a href="matrices.html#name-the-tv-matrix"><i class="fa fa-check"></i><b>5.2.4</b> name the TV matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="matrices.html"><a href="matrices.html#operation-on-matrix"><i class="fa fa-check"></i><b>5.3</b> operation on matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>6</b> dataframe</a><ul>
+<li class="chapter" data-level="6.1" data-path="dataframe.html"><a href="dataframe.html#dataframe-from-column-vectors"><i class="fa fa-check"></i><b>6.1</b> Dataframe from column vectors</a></li>
+<li class="chapter" data-level="6.2" data-path="dataframe.html"><a href="dataframe.html#dataframe-from-rows-vectors"><i class="fa fa-check"></i><b>6.2</b> Dataframe from rows vectors</a></li>
+<li class="chapter" data-level="6.3" data-path="dataframe.html"><a href="dataframe.html#appending-row-to-dataframe"><i class="fa fa-check"></i><b>6.3</b> appending row to dataframe</a></li>
+<li class="chapter" data-level="6.4" data-path="dataframe.html"><a href="dataframe.html#select-columns-by-position"><i class="fa fa-check"></i><b>6.4</b> select columns by position</a></li>
+<li class="chapter" data-level="6.5" data-path="dataframe.html"><a href="dataframe.html#select-columns-by-name"><i class="fa fa-check"></i><b>6.5</b> select columns by name</a></li>
+<li class="chapter" data-level="6.6" data-path="dataframe.html"><a href="dataframe.html#subset-function"><i class="fa fa-check"></i><b>6.6</b> subset function</a></li>
+<li class="chapter" data-level="6.7" data-path="dataframe.html"><a href="dataframe.html#change-names-of-dataframe-columns"><i class="fa fa-check"></i><b>6.7</b> change names of dataframe columns</a></li>
+<li class="chapter" data-level="6.8" data-path="dataframe.html"><a href="dataframe.html#matrix-to-dataframe"><i class="fa fa-check"></i><b>6.8</b> matrix to dataframe</a></li>
+<li class="chapter" data-level="6.9" data-path="dataframe.html"><a href="dataframe.html#combine-two-dataframes-by-column"><i class="fa fa-check"></i><b>6.9</b> combine two dataframes by column</a></li>
+<li class="chapter" data-level="6.10" data-path="dataframe.html"><a href="dataframe.html#combine-on-specific-column"><i class="fa fa-check"></i><b>6.10</b> combine on specific column</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>7</b> missing data</a><ul>
+<li class="chapter" data-level="7.1" data-path="missing-data.html"><a href="missing-data.html#r-markdown"><i class="fa fa-check"></i><b>7.1</b> R Markdown</a></li>
+<li class="chapter" data-level="7.2" data-path="missing-data.html"><a href="missing-data.html#including-plots"><i class="fa fa-check"></i><b>7.2</b> Including Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>8</b> datasets</a></li>
+<li class="chapter" data-level="9" data-path="day3.html"><a href="day3.html"><i class="fa fa-check"></i><b>9</b> day3</a></li>
+<li class="chapter" data-level="10" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>10</b> stats</a></li>
+<li class="chapter" data-level="11" data-path="new-test.html"><a href="new-test.html"><i class="fa fa-check"></i><b>11</b> new test</a></li>
+<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> loops</a></li>
+<li class="chapter" data-level="13" data-path="loop-and-function.html"><a href="loop-and-function.html"><i class="fa fa-check"></i><b>13</b> loop and function</a></li>
+<li class="chapter" data-level="14" data-path="regression-and-read-file.html"><a href="regression-and-read-file.html"><i class="fa fa-check"></i><b>14</b> regression and read file</a></li>
+<li class="chapter" data-level="15" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>15</b> regression</a></li>
+<li class="chapter" data-level="16" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>16</b> functions</a></li>
+<li class="chapter" data-level="17" data-path="scripts.html"><a href="scripts.html"><i class="fa fa-check"></i><b>17</b> scripts</a></li>
+<li class="chapter" data-level="18" data-path="fibonacci.html"><a href="fibonacci.html"><i class="fa fa-check"></i><b>18</b> fibonacci</a></li>
+<li class="chapter" data-level="19" data-path="air-data.html"><a href="air-data.html"><i class="fa fa-check"></i><b>19</b> Air data</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> functions</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># if statement</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="cf">if</span> (condition) expression</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;condition&#39; not found</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="cf">if</span> (condition) expression <span class="cf">else</span> expression</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;condition&#39; not found</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="cf">if</span> (test_expression) {</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  statement</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">}</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;test_expression&#39; not found</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">values &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>                                        </a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="cf">if</span> (<span class="kw">sample</span>(values,<span class="dv">1</span>) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)                               </a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="kw">print</span>(<span class="kw">paste</span>(values, <span class="st">&quot;is less than or equal to 10&quot;</span>))</a></code></pre></div>
+<pre><code>##  [1] &quot;1 is less than or equal to 10&quot;  &quot;2 is less than or equal to 10&quot; 
+##  [3] &quot;3 is less than or equal to 10&quot;  &quot;4 is less than or equal to 10&quot; 
+##  [5] &quot;5 is less than or equal to 10&quot;  &quot;6 is less than or equal to 10&quot; 
+##  [7] &quot;7 is less than or equal to 10&quot;  &quot;8 is less than or equal to 10&quot; 
+##  [9] &quot;9 is less than or equal to 10&quot;  &quot;10 is less than or equal to 10&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="cf">if</span> (test_expression) {</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  statement</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  statement</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">}</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;test_expression&#39; not found</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">val1 =<span class="st"> </span><span class="dv">10</span>                                    <span class="co">#Creating our first variable val1</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">val2 =<span class="st"> </span><span class="dv">5</span>                                     <span class="co">#Creating second variable val2</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="cf">if</span> (val1 <span class="op">&gt;</span><span class="st"> </span>val2){                            <span class="co">#Executing Conditional Statement based on the comparison </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="kw">print</span>(<span class="st">&quot;Value 1 is greater than Value 2&quot;</span>)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">} <span class="cf">else</span> <span class="cf">if</span> (val1 <span class="op">&lt;</span><span class="st"> </span>val2){</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="kw">print</span>(<span class="st">&quot;Value 1 is less than Value 2&quot;</span>)</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">}</a></code></pre></div>
+<pre><code>## [1] &quot;Value 1 is greater than Value 2&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># for loops</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="cf">for</span> (variable <span class="cf">in</span> sequence) { </a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  expression</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">  expression</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  expression</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">}</a></code></pre></div>
+<pre><code>## Error in for (variable in sequence) {: invalid for() loop sequence</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># example</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="cf">for</span> (x <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)) <span class="kw">print</span>(<span class="kw">sqrt</span>(x))</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 1.414214
+## [1] 1.732051
+## [1] 2
+## [1] 2.236068
+## [1] 2.44949
+## [1] 2.645751
+## [1] 2.828427
+## [1] 3
+## [1] 3.162278</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) </a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="cf">for</span>(id <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){ </a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="kw">print</span>(values[id])</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="cf">for</span> (id1 <span class="cf">in</span> <span class="kw">seq</span>(<span class="kw">nrow</span>(mat))) {</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">  <span class="cf">for</span> (id2 <span class="cf">in</span> <span class="kw">seq</span>(<span class="kw">ncol</span>(mat))) {</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">    <span class="kw">print</span>(mat[id1, id2])</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">  }</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 5
+## [1] 7
+## [1] 9
+## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># while loop</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="cf">while</span> (condition) {</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">  expression</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">  expression</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">  expression</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">}</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;condition&#39; not found</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">val =<span class="st"> </span><span class="fl">2.987</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="cf">while</span>(val <span class="op">&lt;=</span><span class="st"> </span><span class="fl">4.987</span>) {</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">  val =<span class="st"> </span>val <span class="op">+</span><span class="st"> </span><span class="fl">0.987</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">  <span class="kw">print</span>(<span class="kw">c</span>(val,val<span class="dv">-2</span>,val<span class="dv">-1</span>))</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">}</a></code></pre></div>
+<pre><code>## [1] 3.974 1.974 2.974
+## [1] 4.961 2.961 3.961
+## [1] 5.948 3.948 4.948</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># example</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">a &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">b &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw">print</span>(a)</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="cf">while</span> (b <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span>) {</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">  <span class="kw">print</span>(b)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  temp &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">  a &lt;-<span class="st"> </span>b</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">  b &lt;-<span class="st"> </span>temp</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 5
+## [1] 8
+## [1] 13
+## [1] 21
+## [1] 34</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="cf">while</span> (<span class="kw">length</span>(x) <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) {</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  position &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">  new &lt;-<span class="st"> </span>x[position] <span class="op">+</span><span class="st"> </span>x[position<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x,new)</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>##  [1]  0  1  1  2  3  5  8 13 21 34</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># repeat and break</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="cf">repeat</span> {</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">  <span class="co"># simulations; generate some value have an expectation if within some range,</span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">  <span class="co"># then exit the loop</span></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6">  <span class="cf">if</span> ((value <span class="op">-</span><span class="st"> </span>expectation) <span class="op">&lt;=</span><span class="st"> </span>threshold) {</a>
+<a class="sourceLine" id="cb33-7" data-line-number="7">    <span class="cf">break</span></a>
+<a class="sourceLine" id="cb33-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb33-9" data-line-number="9">}</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;value&#39; not found</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">val &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="cf">repeat</span> {</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">  <span class="kw">print</span>(val)</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">  val &lt;-<span class="st"> </span>val<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">  <span class="cf">if</span> (val <span class="op">==</span><span class="st"> </span><span class="dv">10</span>){</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">    <span class="cf">break</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">}</a></code></pre></div>
+<pre><code>## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">values =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="cf">for</span> (id <span class="cf">in</span> values){</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">  <span class="cf">if</span> (id <span class="op">==</span><span class="st"> </span><span class="dv">2</span>){</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">    <span class="cf">break</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">  }</a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">  <span class="kw">print</span>(id)</a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">}</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># next </span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> x) {</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) {</a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">    <span class="cf">next</span></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb39-9" data-line-number="9">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 4</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># functions</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">Fibonacci &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">  x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">  <span class="cf">while</span> (<span class="kw">length</span>(x) <span class="op">&lt;</span><span class="st"> </span>n) {</a>
+<a class="sourceLine" id="cb41-6" data-line-number="6">    position &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb41-7" data-line-number="7">    new &lt;-<span class="st"> </span>x[position] <span class="op">+</span><span class="st"> </span>x[position<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x,new)</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb41-10" data-line-number="10">  <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb41-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb41-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb41-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb41-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb41-15" data-line-number="15">Fibonacci &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</a>
+<a class="sourceLine" id="cb41-16" data-line-number="16">  <span class="cf">if</span> (n<span class="op">==</span><span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb41-17" data-line-number="17">    x &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb41-18" data-line-number="18">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb41-19" data-line-number="19">    x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb41-20" data-line-number="20">    <span class="cf">while</span> (<span class="kw">length</span>(x) <span class="op">&lt;</span><span class="st"> </span>n) {</a>
+<a class="sourceLine" id="cb41-21" data-line-number="21">      position &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb41-22" data-line-number="22">      new &lt;-<span class="st"> </span>x[position] <span class="op">+</span><span class="st"> </span>x[position<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb41-23" data-line-number="23">      x &lt;-<span class="st"> </span><span class="kw">c</span>(x,new)</a>
+<a class="sourceLine" id="cb41-24" data-line-number="24">    }</a>
+<a class="sourceLine" id="cb41-25" data-line-number="25">  }</a>
+<a class="sourceLine" id="cb41-26" data-line-number="26">  <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb41-27" data-line-number="27">}</a>
+<a class="sourceLine" id="cb41-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb41-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb41-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb41-31" data-line-number="31">check &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb41-32" data-line-number="32">  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb41-33" data-line-number="33">    result &lt;-<span class="st"> &quot;Positive&quot;</span></a>
+<a class="sourceLine" id="cb41-34" data-line-number="34">  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb41-35" data-line-number="35">    result &lt;-<span class="st"> &quot;Negative&quot;</span></a>
+<a class="sourceLine" id="cb41-36" data-line-number="36">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb41-37" data-line-number="37">    </a>
+<a class="sourceLine" id="cb41-38" data-line-number="38">    result &lt;-<span class="st"> &quot;Zero&quot;</span></a>
+<a class="sourceLine" id="cb41-39" data-line-number="39">  }</a>
+<a class="sourceLine" id="cb41-40" data-line-number="40">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb41-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb41-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb41-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb41-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb41-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb41-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb41-47" data-line-number="47">plot_iris&lt;-<span class="cf">function</span>(n,m){</a>
+<a class="sourceLine" id="cb41-48" data-line-number="48">  <span class="kw">plot</span>(iris[,n],iris[,m])</a>
+<a class="sourceLine" id="cb41-49" data-line-number="49">}</a></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scripts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/15-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rworkshop.pdf", "rworkshop.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

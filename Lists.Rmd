@@ -1,0 +1,135 @@
+---
+title: "List"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## what would happen if you combine vectors of different class 
+
+```{r }
+
+vec <- c(1,2,3)
+char_vec <- c("R", "Rstudio", "Github")
+logic_vec <- c(TRUE, FALSE, TRUE, FALSE)
+out_list <- c(vec, char_vec, logic_vec)
+out_list
+class(out_list)
+```
+
+
+## Try it in list
+
+```{r }
+
+vec <- c(1,2,3)
+char_vec <- c("R", "Rstudio", "Github")
+logic_vec <- c(TRUE, FALSE, TRUE, FALSE)
+out_list <- list(vec, char_vec, logic_vec)
+out_list
+#class(out_list)
+#str(out_list)
+```
+
+## access elements
+
+```{r }
+
+out_list[1]
+out_list[[1]][1]
+```
+
+
+## check class
+
+```{r }
+
+class(out_list[[1]])
+
+```
+
+
+## give names
+
+```{r }
+names(out_list) <- c("num", "char", "logic")
+out_list
+```
+
+## access elements by names
+
+```{r }
+
+out_list$num
+```
+
+
+## add element to end of list
+
+```{r }
+out_list[4] <- "New_element"
+
+```
+
+## remove the last element
+
+```{r }
+
+out_list[4] <- NULL
+```
+
+
+
+## merge two lists
+
+```{r }
+num_list <- list(c(1,2,3,4,5) )    
+day_list <- list(c("Mon","Tue","Wed", "Thurs", "Fri"))
+merge_list <- c(num_list, day_list)
+merge_list
+```
+
+
+
+## convert list to vector
+
+```{r }
+int_list <- list(1:5)     
+int_list2 <- list(10:14)
+
+vec1 <- unlist(int_list)
+vec2 <- unlist(int_list2)
+
+```
+
+
+## matrix example with list
+
+```{r }
+Seinfeld <- c(13, 11)
+Friends <- c(53, 49)
+Office <- c(40, 35)
+
+pop_index <- c(Seinfeld, Friends, Office)
+
+tv_matrix <- matrix(pop_index, byrow = TRUE, nrow = 3,
+                    dimnames = list(c("Seinfeld", "Friends", "Office"),
+                                    c("year_2018", "year_2019")))
+
+tv_matrix
+```
+
+> ### Challenge
+>
+>
+> 1. make a list that contains - \n
+> a. names of your favourite books or films,
+> b. how many hours do you and 3 of your friends sleep?
+> c. answer to these questions -
+> I. Do you like cats?
+> II. Do you like dogs?
+> III. Do you like rain?
+> IV. Do you hate winters?
+

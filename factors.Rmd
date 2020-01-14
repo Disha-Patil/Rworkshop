@@ -1,0 +1,55 @@
+---
+title: "factors"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+In R, each possible value of a categorical variable is called a level. A vector of levels is
+called a factor. Factors fit very cleanly into the vector orientation of R, and they are
+used in powerful ways for processing data and building statistical models.
+Most of the time, converting your categorical data into a factor is a simple matter of
+calling the factor function, which identifies the distinct levels of the categorical data
+and packs them into a factor:
+
+```{r }
+f <- factor(c("Win","Win","Lose","Tie","Win","Lose"))
+```
+
+Notice that when we printed the factor, f, R did not put quotes around the values. They
+are levels, not strings. Also notice that when we printed the factor, R also displayed the
+distinct levels below the factor.
+If your vector contains only a subset of all the possible levels, then R will have an
+incomplete picture of the possible levels. Suppose you have a string-valued variable
+wday that gives the day of the week on which your data was observed:
+
+```{r }
+f <- factor(c("wed","thu","mon"))
+```
+
+
+
+```{r }
+days=c("Wed","Thu","Mon")
+f <- factor(days)
+f
+```
+
+
+```{r }
+ f <- factor(days, c("Mon","Tue","Wed","Thu","Fri"))
+f
+```
+Now R understands that f is a factor with five possible levels. It knows their correct
+order, too. It originally put Thursday before Tuesday because it assumes alphabetical
+order by default.† The explicit second argument defines the correct order.
+In many situations it is not necessary to call factor explicitly. When an R function
+requires a factor, it usually converts your data to a factor automatically. The table
+function, for instance, works only on factors, so it routinely converts its inputs to factors
+without asking. You must explicitly create a factor variable when you want to specify
+the full set of levels or when you want to control the ordering of levels.
+

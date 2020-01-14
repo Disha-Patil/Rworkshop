@@ -1,0 +1,235 @@
+---
+title: "Matrices"
+output: html_document
+---
+# matrices
+```{r }
+vector1 <- c(2,9,3)
+vector2 <- c(10,16,17,13,11,15)
+vector2
+```
+
+```{r }
+result <- array(c(vector1,vector2),dim = c(3,3,2))
+result
+```
+
+```{r }
+vector1 <- c(2,9,6)
+vector2 <- c(10,15,13,16,11,12)
+column.names <- c("COL1","COL2","COL3")
+row.names <- c("ROW1","ROW2","ROW3")
+matrix.names <- c("Matrix1","Matrix2")
+```
+
+```{r }
+result <- array(c(vector1,vector2),dim = c(3,3,2),dimnames = list(row.names,column.names,
+  matrix.names))
+#print(result)
+#print(result[3,,2])
+#print(result[1,3,1])
+
+matrix1 <- result[,,1]
+matrix2 <- result[,,2]
+
+matrix1
+```
+```{r }
+vector1 <- c(1,2,3)
+vector2 <- c(3,4,5,6,7,8)
+
+
+array1 <- array(c(vector1,vector2),dim = c(3,3,2))
+
+vector3 <- c(3,2,1)
+vector4 <- c(8,7,6,5,4,3)
+array2 <- array(c(vector1,vector2),dim = c(3,3,2))
+
+matrix1 <- array1[,,2]
+matrix2 <- array2[,,2]
+
+result <- matrix1+matrix2
+print(result)
+
+```
+
+## What's a matrix?
+In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional.
+
+You can construct a matrix in R with the matrix() function. Consider the following example:
+
+```{r }
+matrix(1:9, byrow = TRUE, nrow = 3)
+```
+
+
+
+```{r , echo=T}
+A = matrix( 
+   c(2, 4, 3, 1, 5, 7), # the data elements 
+   nrow=2,              # number of rows 
+   ncol=3,              # number of columns 
+   byrow = TRUE)        # fill matrix by rows 
+A
+```
+
+
+
+An element at the mth row, nth column of A can be accessed by the expression A[m, n].
+
+```{r , echo=T}
+ A[2, 3]
+```
+
+The entire mth row A can be extracted as A[m, ].
+
+```{r , echo=T}
+ A[2, ] 
+```
+
+Similarly, the entire nth column A can be extracted as A[ ,n].
+
+```{r , echo=T}
+A[ ,3] 
+```
+
+We can also extract more than one rows or columns at a time.
+
+```{r , echo=T}
+A[ ,c(1,3)] 
+```
+
+
+```{r , echo=T}
+A[ ,3] 
+```
+
+
+
+## Some matrix fun 
+
+### Popularity of TV series
+
+
+```{r }
+Seinfeld <- c(13, 11)
+Friends <- c(53, 49)
+Office <- c(40, 35)
+```
+
+### Create popularity vector
+
+```{r }
+pop_index <- c(Seinfeld, Friends, Office)
+```
+
+### construct the TV matrix
+```{r }
+tv_matrix <- matrix(pop_index, byrow = TRUE, nrow = 3)
+
+```
+
+```{r }
+tv_matrix 
+
+```
+
+
+### name the TV matrix
+
+make two vectors
+```{r }
+year <- c("year_2018", "year_2019")
+titles <- c("Seinfeld", "Friends", "Office")
+
+```
+
+
+```{r }
+# Name the columns with region
+colnames(tv_matrix) <- year
+
+# Name the rows with titles
+rownames(tv_matrix) <- titles
+```
+
+```{r }
+tv_matrix
+```
+
+## operation on matrix
+
+Difference
+```{r }
+tv_matrix[1,1]-tv_matrix[1,2]
+```
+
+
+
+> ### Challenge
+>
+>
+> * Perform 5 operations on this matrix.
+
+
+
+
+```{r }
+A=matrix(1:9, byrow = TRUE, nrow = 3)
+B=matrix(c(5,73,54,2,5,2,3,4,9), byrow = TRUE, nrow = 3)
+  
+```
+
+
+```{r }
+A
+  
+```
+
+
+
+```{r }
+B
+  
+```
+
+
+Matrix transposition of A
+
+```{r }
+t(A)
+  
+```
+
+Matrix multiplication of A and B
+
+```{r }
+A*B
+  
+```
+
+```{r }
+A%*%B
+  
+```
+
+Matrix inverse of B
+
+```{r }
+solve(B)
+  
+```
+
+An n-by-n diagonal (identity) matrix
+
+```{r }
+diag(10)
+  
+```
+
+
+```{r }
+diag(A)
+  
+```
+

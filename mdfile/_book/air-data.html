@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Air data | R workshop</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Air data | R workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Air data | R workshop" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Flame university" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fibonacci.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R workshop</a></li>
+<li class="chapter" data-level="2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>2</b> R as a Calculator</a></li>
+<li class="chapter" data-level="3" data-path="r-objects.html"><a href="r-objects.html"><i class="fa fa-check"></i><b>3</b> r objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-objects.html"><a href="r-objects.html#creating-objects-in-r"><i class="fa fa-check"></i><b>3.1</b> Creating objects in R</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="r-objects.html"><a href="r-objects.html#comments"><i class="fa fa-check"></i><b>3.1.1</b> Comments</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-objects.html"><a href="r-objects.html#functions-and-their-arguments"><i class="fa fa-check"></i><b>3.1.2</b> Functions and their arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-objects.html"><a href="r-objects.html#vectors-and-data-types"><i class="fa fa-check"></i><b>3.2</b> Vectors and data types</a></li>
+<li class="chapter" data-level="3.3" data-path="r-objects.html"><a href="r-objects.html#subsetting-vectors"><i class="fa fa-check"></i><b>3.3</b> Subsetting vectors</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="r-objects.html"><a href="r-objects.html#conditional-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Conditional subsetting</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-objects.html"><a href="r-objects.html#creating-sequences"><i class="fa fa-check"></i><b>3.3.2</b> Creating sequences</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-objects.html"><a href="r-objects.html#vector-arithmatic"><i class="fa fa-check"></i><b>3.3.3</b> Vector arithmatic</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-objects.html"><a href="r-objects.html#plot-simple-vector"><i class="fa fa-check"></i><b>3.3.4</b> plot simple vector</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>4</b> list</a><ul>
+<li class="chapter" data-level="4.1" data-path="list.html"><a href="list.html#what-would-happen-if-you-combine-vectors-of-different-class"><i class="fa fa-check"></i><b>4.1</b> what would happen if you combine vectors of different class</a></li>
+<li class="chapter" data-level="4.2" data-path="list.html"><a href="list.html#try-it-in-list"><i class="fa fa-check"></i><b>4.2</b> Try it in list</a></li>
+<li class="chapter" data-level="4.3" data-path="list.html"><a href="list.html#access-elements"><i class="fa fa-check"></i><b>4.3</b> access elements</a></li>
+<li class="chapter" data-level="4.4" data-path="list.html"><a href="list.html#check-class"><i class="fa fa-check"></i><b>4.4</b> check class</a></li>
+<li class="chapter" data-level="4.5" data-path="list.html"><a href="list.html#give-names"><i class="fa fa-check"></i><b>4.5</b> give names</a></li>
+<li class="chapter" data-level="4.6" data-path="list.html"><a href="list.html#access-elements-by-names"><i class="fa fa-check"></i><b>4.6</b> access elements by names</a></li>
+<li class="chapter" data-level="4.7" data-path="list.html"><a href="list.html#add-element-to-end-of-list"><i class="fa fa-check"></i><b>4.7</b> add element to end of list</a></li>
+<li class="chapter" data-level="4.8" data-path="list.html"><a href="list.html#remove-the-last-element"><i class="fa fa-check"></i><b>4.8</b> remove the last element</a></li>
+<li class="chapter" data-level="4.9" data-path="list.html"><a href="list.html#merge-two-lists"><i class="fa fa-check"></i><b>4.9</b> merge two lists</a></li>
+<li class="chapter" data-level="4.10" data-path="list.html"><a href="list.html#convert-list-to-vector"><i class="fa fa-check"></i><b>4.10</b> convert list to vector</a></li>
+<li class="chapter" data-level="4.11" data-path="list.html"><a href="list.html#matrix-example-with-list"><i class="fa fa-check"></i><b>4.11</b> matrix example with list</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5</b> matrices</a><ul>
+<li class="chapter" data-level="5.1" data-path="matrices.html"><a href="matrices.html#whats-a-matrix"><i class="fa fa-check"></i><b>5.1</b> What’s a matrix?</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html#some-matrix-fun"><i class="fa fa-check"></i><b>5.2</b> Some matrix fun</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="matrices.html"><a href="matrices.html#popularity-of-tv-series"><i class="fa fa-check"></i><b>5.2.1</b> Popularity of TV series</a></li>
+<li class="chapter" data-level="5.2.2" data-path="matrices.html"><a href="matrices.html#create-popularity-vector"><i class="fa fa-check"></i><b>5.2.2</b> Create popularity vector</a></li>
+<li class="chapter" data-level="5.2.3" data-path="matrices.html"><a href="matrices.html#construct-the-tv-matrix"><i class="fa fa-check"></i><b>5.2.3</b> construct the TV matrix</a></li>
+<li class="chapter" data-level="5.2.4" data-path="matrices.html"><a href="matrices.html#name-the-tv-matrix"><i class="fa fa-check"></i><b>5.2.4</b> name the TV matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="matrices.html"><a href="matrices.html#operation-on-matrix"><i class="fa fa-check"></i><b>5.3</b> operation on matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>6</b> dataframe</a><ul>
+<li class="chapter" data-level="6.1" data-path="dataframe.html"><a href="dataframe.html#dataframe-from-column-vectors"><i class="fa fa-check"></i><b>6.1</b> Dataframe from column vectors</a></li>
+<li class="chapter" data-level="6.2" data-path="dataframe.html"><a href="dataframe.html#dataframe-from-rows-vectors"><i class="fa fa-check"></i><b>6.2</b> Dataframe from rows vectors</a></li>
+<li class="chapter" data-level="6.3" data-path="dataframe.html"><a href="dataframe.html#appending-row-to-dataframe"><i class="fa fa-check"></i><b>6.3</b> appending row to dataframe</a></li>
+<li class="chapter" data-level="6.4" data-path="dataframe.html"><a href="dataframe.html#select-columns-by-position"><i class="fa fa-check"></i><b>6.4</b> select columns by position</a></li>
+<li class="chapter" data-level="6.5" data-path="dataframe.html"><a href="dataframe.html#select-columns-by-name"><i class="fa fa-check"></i><b>6.5</b> select columns by name</a></li>
+<li class="chapter" data-level="6.6" data-path="dataframe.html"><a href="dataframe.html#subset-function"><i class="fa fa-check"></i><b>6.6</b> subset function</a></li>
+<li class="chapter" data-level="6.7" data-path="dataframe.html"><a href="dataframe.html#change-names-of-dataframe-columns"><i class="fa fa-check"></i><b>6.7</b> change names of dataframe columns</a></li>
+<li class="chapter" data-level="6.8" data-path="dataframe.html"><a href="dataframe.html#matrix-to-dataframe"><i class="fa fa-check"></i><b>6.8</b> matrix to dataframe</a></li>
+<li class="chapter" data-level="6.9" data-path="dataframe.html"><a href="dataframe.html#combine-two-dataframes-by-column"><i class="fa fa-check"></i><b>6.9</b> combine two dataframes by column</a></li>
+<li class="chapter" data-level="6.10" data-path="dataframe.html"><a href="dataframe.html#combine-on-specific-column"><i class="fa fa-check"></i><b>6.10</b> combine on specific column</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>7</b> missing data</a><ul>
+<li class="chapter" data-level="7.1" data-path="missing-data.html"><a href="missing-data.html#r-markdown"><i class="fa fa-check"></i><b>7.1</b> R Markdown</a></li>
+<li class="chapter" data-level="7.2" data-path="missing-data.html"><a href="missing-data.html#including-plots"><i class="fa fa-check"></i><b>7.2</b> Including Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>8</b> datasets</a></li>
+<li class="chapter" data-level="9" data-path="day3.html"><a href="day3.html"><i class="fa fa-check"></i><b>9</b> day3</a></li>
+<li class="chapter" data-level="10" data-path="stats.html"><a href="stats.html"><i class="fa fa-check"></i><b>10</b> stats</a></li>
+<li class="chapter" data-level="11" data-path="new-test.html"><a href="new-test.html"><i class="fa fa-check"></i><b>11</b> new test</a></li>
+<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> loops</a></li>
+<li class="chapter" data-level="13" data-path="loop-and-function.html"><a href="loop-and-function.html"><i class="fa fa-check"></i><b>13</b> loop and function</a></li>
+<li class="chapter" data-level="14" data-path="regression-and-read-file.html"><a href="regression-and-read-file.html"><i class="fa fa-check"></i><b>14</b> regression and read file</a></li>
+<li class="chapter" data-level="15" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>15</b> regression</a></li>
+<li class="chapter" data-level="16" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>16</b> functions</a></li>
+<li class="chapter" data-level="17" data-path="scripts.html"><a href="scripts.html"><i class="fa fa-check"></i><b>17</b> scripts</a></li>
+<li class="chapter" data-level="18" data-path="fibonacci.html"><a href="fibonacci.html"><i class="fa fa-check"></i><b>18</b> fibonacci</a></li>
+<li class="chapter" data-level="19" data-path="air-data.html"><a href="air-data.html"><i class="fa fa-check"></i><b>19</b> Air data</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="air-data" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Air data</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">air&lt;-datasets<span class="op">::</span>airquality</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#Describe</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">head</span>(air)</a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">tail</span>(air)</a></code></pre></div>
+<pre><code>##     Ozone Solar.R Wind Temp Month Day
+## 148    14      20 16.6   63     9  25
+## 149    30     193  6.9   70     9  26
+## 150    NA     145 13.2   77     9  27
+## 151    14     191 14.3   75     9  28
+## 152    18     131  8.0   76     9  29
+## 153    20     223 11.5   68     9  30</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># dimension to get row and col numbers</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">dim</span>(air)</a></code></pre></div>
+<pre><code>## [1] 153   6</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># row count</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">nrow</span>(air)</a></code></pre></div>
+<pre><code>## [1] 153</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># col count</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">ncol</span>(air)</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">#names</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">colnames</span>(air)</a></code></pre></div>
+<pre><code>## [1] &quot;Ozone&quot;   &quot;Solar.R&quot; &quot;Wind&quot;    &quot;Temp&quot;    &quot;Month&quot;   &quot;Day&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">subset</span>(air,<span class="dt">select=</span>Ozone)</a></code></pre></div>
+<pre><code>##     Ozone
+## 1      41
+## 2      36
+## 3      12
+## 4      18
+## 5      NA
+## 6      28
+## 7      23
+## 8      19
+## 9       8
+## 10     NA
+## 11      7
+## 12     16
+## 13     11
+## 14     14
+## 15     18
+## 16     14
+## 17     34
+## 18      6
+## 19     30
+## 20     11
+## 21      1
+## 22     11
+## 23      4
+## 24     32
+## 25     NA
+## 26     NA
+## 27     NA
+## 28     23
+## 29     45
+## 30    115
+## 31     37
+## 32     NA
+## 33     NA
+## 34     NA
+## 35     NA
+## 36     NA
+## 37     NA
+## 38     29
+## 39     NA
+## 40     71
+## 41     39
+## 42     NA
+## 43     NA
+## 44     23
+## 45     NA
+## 46     NA
+## 47     21
+## 48     37
+## 49     20
+## 50     12
+## 51     13
+## 52     NA
+## 53     NA
+## 54     NA
+## 55     NA
+## 56     NA
+## 57     NA
+## 58     NA
+## 59     NA
+## 60     NA
+## 61     NA
+## 62    135
+## 63     49
+## 64     32
+## 65     NA
+## 66     64
+## 67     40
+## 68     77
+## 69     97
+## 70     97
+## 71     85
+## 72     NA
+## 73     10
+## 74     27
+## 75     NA
+## 76      7
+## 77     48
+## 78     35
+## 79     61
+## 80     79
+## 81     63
+## 82     16
+## 83     NA
+## 84     NA
+## 85     80
+## 86    108
+## 87     20
+## 88     52
+## 89     82
+## 90     50
+## 91     64
+## 92     59
+## 93     39
+## 94      9
+## 95     16
+## 96     78
+## 97     35
+## 98     66
+## 99    122
+## 100    89
+## 101   110
+## 102    NA
+## 103    NA
+## 104    44
+## 105    28
+## 106    65
+## 107    NA
+## 108    22
+## 109    59
+## 110    23
+## 111    31
+## 112    44
+## 113    21
+## 114     9
+## 115    NA
+## 116    45
+## 117   168
+## 118    73
+## 119    NA
+## 120    76
+## 121   118
+## 122    84
+## 123    85
+## 124    96
+## 125    78
+## 126    73
+## 127    91
+## 128    47
+## 129    32
+## 130    20
+## 131    23
+## 132    21
+## 133    24
+## 134    44
+## 135    21
+## 136    28
+## 137     9
+## 138    13
+## 139    46
+## 140    18
+## 141    13
+## 142    24
+## 143    16
+## 144    13
+## 145    23
+## 146    36
+## 147     7
+## 148    14
+## 149    30
+## 150    NA
+## 151    14
+## 152    18
+## 153    20</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">mean</span>(air<span class="op">$</span>Ozone,<span class="dt">na.rm =</span> T)</a></code></pre></div>
+<pre><code>## [1] 42.12931</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co">#get rid of NA</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">air<span class="op">$</span>Ozone[<span class="op">-</span><span class="kw">which</span>(<span class="kw">is.na</span>(air<span class="op">$</span>Ozone))]</a></code></pre></div>
+<pre><code>##   [1]  41  36  12  18  28  23  19   8   7  16  11  14  18  14  34   6  30
+##  [18]  11   1  11   4  32  23  45 115  37  29  71  39  23  21  37  20  12
+##  [35]  13 135  49  32  64  40  77  97  97  85  10  27   7  48  35  61  79
+##  [52]  63  16  80 108  20  52  82  50  64  59  39   9  16  78  35  66 122
+##  [69]  89 110  44  28  65  22  59  23  31  44  21   9  45 168  73  76 118
+##  [86]  84  85  96  78  73  91  47  32  20  23  21  24  44  21  28   9  13
+## [103]  46  18  13  24  16  13  23  36   7  14  30  14  18  20</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#pair plot with correlation numbers</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">pairs</span>(data[,<span class="op">-</span><span class="dv">5</span>],<span class="dt">upper.panel =</span> <span class="kw">cor</span>(data[,<span class="op">-</span><span class="dv">5</span>]))</a></code></pre></div>
+<pre><code>## Error in match.fun(upper.panel): &#39;cor(data[, -5])&#39; is not a function, character or symbol</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">plot</span>(cars<span class="op">$</span>mpg,cars<span class="op">$</span>hp,<span class="dt">xlab =</span> <span class="st">&quot;MPG&quot;</span>,<span class="dt">ylab =</span> <span class="st">&quot;HP&quot;</span>,</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">     <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>)[<span class="kw">factor</span>(cars<span class="op">$</span>vs)],</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">     <span class="dt">main=</span><span class="st">&quot;Pay more for more power :)&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in min(x): no non-missing arguments to min; returning Inf</code></pre>
+<pre><code>## Warning in max(x): no non-missing arguments to max; returning -Inf</code></pre>
+<pre><code>## Warning in min(x): no non-missing arguments to min; returning Inf</code></pre>
+<pre><code>## Warning in max(x): no non-missing arguments to max; returning -Inf</code></pre>
+<pre><code>## Error in plot.window(...): need finite &#39;xlim&#39; values</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" />
+<p class="caption">plot of chunk unnamed-chunk-1</p>
+</div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fibonacci.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/18-air.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rworkshop.pdf", "rworkshop.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

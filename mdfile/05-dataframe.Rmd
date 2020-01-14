@@ -1,0 +1,242 @@
+---
+title: "DataFrame"
+output: html_document
+---
+# dataframe
+
+## Dataframe from column vectors
+A data frame is a collection of columns, each of which corresponds to an observed
+variable (in the statistical sense, not the programming sense). If your data is already
+organized into columns, then it’s easy to build a data frame.
+The data.frame function can construct a data frame from vectors, where each vector is
+one observed variable. Suppose you have two numeric predictor variables, one categorical predictor variable, and one response variable. The data.frame function can create a data frame from your vectors:
+
+```{r }
+names <- c("kedar","shyam","mohan","geeta","seema","priya")
+ages <- c(23,22,21,22,23,23)
+height <- c(165,170,167,160,164,166)
+has_specs <- c("yes","no","no","yes","no","yes")
+```
+
+```{r }
+data.frame(names,ages)
+```
+
+```{r }
+data.frame(names,height)
+```
+
+```{r }
+data.frame(ages,height)
+```
+
+
+```{r }
+data.frame(height,has_specs)
+```
+
+```{r }
+data.frame(names,ages,height,has_specs)
+```
+
+
+```{r }
+data.frame(Name=names,Age=ages,Height=height,Glasses=has_specs)
+```
+
+Alternatively, your data may be organized into vectors but those vectors are held in a
+list, not individual program variables, like this:
+
+```{r }
+list(names,ages,height,has_specs)
+```
+
+
+
+
+```{r }
+data.frame(list(Name=names,Age=ages,Height=height,Glasses=has_specs))
+```
+
+
+## Dataframe from rows vectors
+
+Data often arrives as a collection of observations. Each observation is a record or tuple
+that contains several values, one for each observed variable. Such data is organized by
+initializing a Data Frame from Row Data observation, not by variable. In other words, you are given rows one at a time rather than columns one at a time.
+
+
+```{r }
+obs <- list(
+  c("Name"="kedar","Age"=23,"Height"=165,"Glasses"="yes"),
+  c("Name"="shyam","Age"=22,"Height"=170,"Glasses"="no"),
+  c("Name"="mohan","Age"=21,"Height"=167,"Glasses"="no")
+)
+```
+
+
+
+```{r }
+obs[[1]]
+```
+
+```{r }
+rbind(obs[[1]],obs[[2]])
+```
+
+We want to bind together every observation, not just the first two, so we tap into the
+vector processing of R. The do.call function will expand obs into one, long argument
+list and call rbind with that long argument list:
+
+```{r }
+ do.call(rbind,obs)
+```
+
+
+
+## appending row to dataframe
+
+```{r }
+data=data.frame(list(Name=names,Age=ages,Height=height,Glasses=has_specs))
+new_obs<-data.frame("Name"="Anthony","Age"=26,"Height"=165,"Glasses"="yes")
+rbind(data,new_obs)
+```
+
+
+## select columns by position
+
+```{r }
+data[[2]]
+```
+
+```{r }
+data[2]
+```
+
+```{r }
+data[c(2,3)]
+```
+
+```{r }
+data[,c(2,3)]
+```
+
+```{r }
+data[,2]
+```
+
+## select columns by name
+
+```{r }
+data[["Age"]]
+```
+
+```{r }
+data["Age"]
+```
+
+```{r }
+data[,"Age"]
+```
+
+```{r }
+data[,c("Age","Height")]
+```
+
+
+## subset function
+
+```{r }
+subset(data,select=Age)
+```
+
+```{r }
+subset(data,subset=(Age<23))
+```
+
+## change names of dataframe columns
+
+```{r }
+colnames(data)=c("patient","p_age","p_height","p_glasses")
+data
+```
+
+## matrix to dataframe
+```{r }
+mat=matrix(1:9, byrow = TRUE, nrow = 3)
+mat_df=as.data.frame(mat)
+mat_df
+```
+
+
+```{r }
+colnames(mat_df)=c("col1","col2","col3")
+mat_df
+```
+
+## combine two dataframes by column
+```{r }
+cbind(subset(data,subset=(p_age<23)),
+      mat_df)
+
+```
+
+## combine on specific column
+
+```{r }
+born<-rbind(data.frame("name"="mohan",
+                 "place_b"="shirdi",
+                 "year_b"=1959),
+            data.frame("name"="girija",
+                 "place_b"="pune",
+                 "year_b"=1950)
+            
+)
+
+dead<-rbind(data.frame("name"="mohan",
+                 "place_d"="shirdi",
+                 "year_d"=2018),
+            data.frame("name"="girija",
+                 "place_d"="pune",
+                 "year_d"=2000)
+)
+            
+
+```
+
+
+```{r }
+born        
+
+```
+
+
+
+
+```{r }
+dead        
+
+```
+
+```{r }
+cbind(born,dead)
+```
+
+
+```{r }
+merge(born,dead,by="name")
+```
+
+
+```{r }
+born        
+
+```
+
+
+```{r }
+born        
+
+```
+
+
